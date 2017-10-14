@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { ErrorsComponent } from './layout';
+import { ShowAuthedDirective } from './directives';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,13 +15,18 @@ import { RouterModule } from '@angular/router';
     HttpModule,
     RouterModule,
   ],
-  declarations: [],
+  declarations: [
+    ErrorsComponent,
+    ShowAuthedDirective,
+  ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     RouterModule,
+    ErrorsComponent,
+    ShowAuthedDirective,
   ],
 })
 
