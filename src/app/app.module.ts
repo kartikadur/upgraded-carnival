@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
+import { EditorModule } from './editor/editor.module';
 import { ProfileModule } from './profile/profile.module';
-// import { SettingsModule } from './settings/settings.module';
+import { SettingsModule } from './settings/settings.module';
 import {
   ApiService,
+  ArticleService,
   AuthGuardService,
   FooterComponent,
   HeaderComponent,
@@ -29,14 +31,16 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: fal
   imports: [
     BrowserModule,
     AuthModule,
+    EditorModule,
     HomeModule,
     ProfileModule,
     SharedModule,
-    // SettingsModule,
+    SettingsModule,
     rootRouting
   ],
   providers: [
     ApiService,
+    ArticleService,
     AuthGuardService,
     JwtService,
     ProfileService,

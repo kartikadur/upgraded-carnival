@@ -6,10 +6,10 @@
           <img [src]="profile.image" alt="" class="user-img">
           <h4>{{ profile.username }}</h4>
           <p>{{ profile.bio }}</p>
-          <a class="btn btn-sm btn-outline-secondary action-button"
-            [routerLink]="['/settings']"
-            [hidden]="!isUser"
-          ><i class="ion-gear-a"></i> Edit Profile Settings</a>
+          <app-follow [hidden]="isUser" [profile]="profile" (onToggle)="onToggleFollowing($event)">
+          </app-follow>
+          <a class="btn btn-sm btn-outline-secondary action-btn" [routerLink]="['/settings']" [hidden]="!isUser">
+            <i class="ion-gear-a"></i> Edit Profile Settings</a>
         </div>
       </div>
     </div>

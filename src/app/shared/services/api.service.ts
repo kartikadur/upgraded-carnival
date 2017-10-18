@@ -24,13 +24,14 @@ export class ApiService {
     };
 
     if (this.jwtService.getToken()) {
-      headersConfig['Authorization'] = `Token${this.jwtService.getToken()}`;
+      headersConfig['Authorization'] = `Token ${this.jwtService.getToken()}`;
     }
 
     return new Headers(headersConfig);
   }
 
   private formatErrors(error: any) {
+    console.log('API Service Error', error);
     return Observable.throw(error.json());
   }
 
@@ -48,6 +49,12 @@ export class ApiService {
 
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(`${environment.api_url}${path}`, JSON.stringify(body), { headers: this.setHeaders() })
+      .catch(this.formatErrors)
+      .map((res: Response) => res.json());
+  }
+
+  delete(path: string): Observable<any> {
+    return this.http.delete(`${environment.api_url}${path}`, { headers: this.setHeaders() })
       .catch(this.formatErrors)
       .map((res: Response) => res.json());
   }

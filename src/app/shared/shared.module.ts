@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { ErrorsComponent } from './layout';
+import { FollowComponent } from './elements';
 import { ShowAuthedDirective } from './directives';
 
 @NgModule({
@@ -17,11 +18,13 @@ import { ShowAuthedDirective } from './directives';
   ],
   declarations: [
     ErrorsComponent,
+    FollowComponent,
     ShowAuthedDirective,
   ],
   exports: [
     CommonModule,
     FormsModule,
+    FollowComponent,
     ReactiveFormsModule,
     HttpModule,
     RouterModule,
