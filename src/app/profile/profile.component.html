@@ -13,20 +13,21 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 offset-md-1 col-xs-12">
-          <div class="articles-toggle">
-            <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
-                <a class="nav-link">My Posts</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link">Favorite Posts</a>
-              </li>
-            </ul>
-          </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <div class="articles-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/profile', profile.username]">My Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/profile', profile.username, 'favorites']">Favorite Posts</a>
+            </li>
+          </ul>
         </div>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>

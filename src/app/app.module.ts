@@ -3,8 +3,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeModule } from './home/home.module';
+import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
+import { HomeModule } from './home/home.module';
 import { EditorModule } from './editor/editor.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingsModule } from './settings/settings.module';
@@ -12,11 +13,13 @@ import {
   ApiService,
   ArticleService,
   AuthGuardService,
+  CommentsService,
   FooterComponent,
   HeaderComponent,
   JwtService,
   ProfileService,
   SharedModule,
+  TagsService,
   UserService,
 } from './shared'
 
@@ -30,6 +33,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: fal
   ],
   imports: [
     BrowserModule,
+    ArticleModule,
     AuthModule,
     EditorModule,
     HomeModule,
@@ -42,8 +46,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: fal
     ApiService,
     ArticleService,
     AuthGuardService,
+    CommentsService,
     JwtService,
     ProfileService,
+    TagsService,
     UserService,
   ],
   bootstrap: [AppComponent]

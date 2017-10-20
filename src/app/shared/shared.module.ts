@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { ErrorsComponent } from './layout';
-import { FollowComponent } from './elements';
+import { ArticleMetaComponent, ArticleListComponent, ArticlePreviewComponent } from './article-helpers'
+import { FollowComponent, FavoriteComponent } from './elements';
 import { ShowAuthedDirective } from './directives';
 
 @NgModule({
@@ -17,12 +18,20 @@ import { ShowAuthedDirective } from './directives';
     RouterModule,
   ],
   declarations: [
+    ArticleMetaComponent,
+    ArticleListComponent,
+    ArticlePreviewComponent,
     ErrorsComponent,
+    FavoriteComponent,
     FollowComponent,
     ShowAuthedDirective,
   ],
   exports: [
     CommonModule,
+    ArticleMetaComponent,
+    ArticleListComponent,
+    ArticlePreviewComponent,
+    FavoriteComponent,
     FormsModule,
     FollowComponent,
     ReactiveFormsModule,
