@@ -92,8 +92,8 @@ module.exports = {
       modules: false,
       warnings: false,
     },
-    publicPath: '/build/',
-    port: 3000,
+    // publicPath: '/build/',
+    // port: 3000,
     setup: function(app) {
       app.use('/api', jsonServer.router('db.json'));
     },
