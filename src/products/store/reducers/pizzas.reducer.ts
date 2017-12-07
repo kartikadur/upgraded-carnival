@@ -7,8 +7,8 @@ interface PizzaEntity {
 
 export interface PizzaState {
     entities: PizzaEntity;
-    loaded: boolean;
     loading: boolean;
+    loaded: boolean;
 }
 
 export const initialState: PizzaState = {
@@ -21,7 +21,7 @@ export function reducer (
   state = initialState,
   action: fromPizzas.PizzasAction
 ): PizzaState {
-  
+
   switch(action.type) {
     case fromPizzas.LOAD_PIZZAS: {
       return {
@@ -29,10 +29,10 @@ export function reducer (
         loading: true
       };
     }
-    
+
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
       const pizzas = action.payload;
-      
+
       // converting from array to object
       const entities = pizzas.reduce((entities : PizzaEntity, pizza: Pizza) => {
         return {
@@ -42,6 +42,7 @@ export function reducer (
       }, {
         ...state.entities
       })
+
       return {
         ...state,
         loading: false,
@@ -49,7 +50,7 @@ export function reducer (
         entities
       };
     }
-    
+
     case fromPizzas.LOAD_PIZZAS_FAIL: {
       return {
         ...state,
@@ -62,7 +63,7 @@ export function reducer (
     }
   }
 }
-  
+
 export const getPizzasLoading = (state: PizzaState) => state.loading;
 export const getPizzasLoaded = (state: PizzaState) => state.loaded;
 export const getPizzasEntities = (state: PizzaState) => state.entities;
