@@ -1,7 +1,7 @@
 import * as fromPizzas from '../actions/pizzas.action';
 import { Pizza } from '../../models/pizza.model';
 
-interface PizzaEntity {
+export interface PizzaEntity {
   [id: number] : Pizza
 }
 

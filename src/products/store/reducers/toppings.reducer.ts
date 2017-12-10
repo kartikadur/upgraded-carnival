@@ -1,7 +1,7 @@
 import * as fromToppings from '../actions/toppings.action';
 import { Topping } from '../../models/topping.model';
 
-interface ToppingEntity {
+export interface ToppingEntity {
   [id: number]: Topping;
 }
 

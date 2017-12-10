@@ -2,7 +2,10 @@ const webpack = require('webpack');
 
 module.exports = config => {
   config.set({
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
+    hostname: process.env.IP,
+    port: process.env.PORT,
+    runnerPort: 0,
     files: ['./node_modules/es6-shim/es6-shim.min.js', 'karma.entry.js'],
     frameworks: ['jasmine'],
     mime: { 'text/x-typescript': ['ts'] },
@@ -16,8 +19,7 @@ module.exports = config => {
       context: __dirname,
       devtool: 'sourcemap',
       module: {
-        rules: [
-          {
+        rules: [{
             test: /\.html$/,
             loaders: ['raw-loader'],
           },
