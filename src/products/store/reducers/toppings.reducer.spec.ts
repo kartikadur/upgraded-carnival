@@ -38,7 +38,7 @@ describe('Toppings Reducers', () => {
     });
 
     describe('LOAD_TOPPINGS action', () => {
-      it('should return default state', () => {
+      it('should set loading to true', () => {
         const { initialState } = fromToppings;
         const action = new fromActions.LoadToppings();
         const state = fromToppings.reducer(initialState, action);
@@ -50,19 +50,26 @@ describe('Toppings Reducers', () => {
     });
 
     describe('LOAD_TOPPINGS_FAIL action', () => {
-      it('should return default state', () => {
+      it('should return the initialState state', () => {
         const { initialState } = fromToppings;
         const action = new fromActions.LoadToppingsFail(error);
         const state = fromToppings.reducer(initialState, action);
 
-        expect(state.entities).toEqual(initialState.entities);
-        expect(state.loading).toEqual(false);
-        expect(state.loaded).toEqual(false);
+        expect(state).toEqual(initialState);
+      });
+
+      it('should return the previousState state', () => {
+        const { initialState } = fromToppings;
+        const previousState = { ...initialState, loading: true };
+        const action = new fromActions.LoadToppingsFail(error);
+        const state = fromToppings.reducer(previousState, action);
+
+        expect(state).toEqual(initialState);
       });
     });
 
     describe('LOAD_TOPPINGS_SUCCESS action', () => {
-      it('should return default state', () => {
+      it('should populate the toppings entities', () => {
         const { initialState } = fromToppings;
         const action = new fromActions.LoadToppingsSuccess(toppings);
         const state = fromToppings.reducer(initialState, action);
@@ -70,6 +77,16 @@ describe('Toppings Reducers', () => {
         expect(state.entities).toEqual(entities);
         expect(state.loading).toEqual(false);
         expect(state.loaded).toEqual(true);
+      });
+    });
+
+    describe('VISUALIZE_TOPPINGS action', () => {
+      it('should show an array of number ids', () => {
+        const { initialState } = fromToppings;
+        const action = new fromActions.VisualizeToppings([2, 4, 7]);
+        const state = fromToppings.reducer(initialState, action);
+
+        expect(state.selectedToppings).toEqual([2, 4, 7]);
       });
     });
   });
@@ -102,6 +119,24 @@ describe('Toppings Reducers', () => {
         const slice = fromToppings.getToppingsLoading(previousState);
 
         expect(slice).toEqual(true);
+      });
+    });
+
+    describe('getSelectedToppings', () => {
+      it('should return empty array for no selected toppings', () => {
+        const { initialState } = fromToppings;
+        const slice = fromToppings.getSelectedToppings(initialState)
+
+        expect(slice).toEqual([]);
+      });
+
+      it('should return array of selected toppings', () => {
+        const selectedToppings = [1, 2, 4, 3, 5, 6];
+        const { initialState } = fromToppings;
+        const previousState = { ...initialState, selectedToppings };
+        const slice = fromToppings.getSelectedToppings(previousState)
+
+        expect(slice).toEqual(selectedToppings);
       });
     });
   });
